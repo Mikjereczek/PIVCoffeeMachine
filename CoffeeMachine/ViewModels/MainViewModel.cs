@@ -108,5 +108,17 @@ namespace CoffeeMachine.ViewModels
             OnPropertyChanged(nameof(CoffeeBeans));
             OnPropertyChanged(nameof(Milk));
         }
+        
+        private async void LoadOrders()
+        {
+            var orders = await _coffeeService.GetOrdersAsync();
+
+            Orders.Clear();
+
+            foreach (var order in orders.OrderByDescending(o => o.OrderTime))
+            {
+                Orders.Add(order);
+            }
+        }
     }
 }
