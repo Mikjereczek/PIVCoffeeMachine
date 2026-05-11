@@ -68,6 +68,8 @@ namespace CoffeeMachine.ViewModels
 
             RefillCommand =
                 new RelayCommand(RefillMachine);
+
+            LoadOrders();
         }
 
         private async Task MakeCoffee(CoffeeType type)
