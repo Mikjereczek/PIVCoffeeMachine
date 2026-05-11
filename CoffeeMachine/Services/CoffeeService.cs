@@ -1,5 +1,7 @@
 ﻿using CoffeeMachine.Data;
 using CoffeeMachine.Models;
+using Microsoft.EntityFrameworkCore;
+using System.Collections.Generic;
 using System.Threading.Tasks;
 
 namespace CoffeeMachine.Services
@@ -18,6 +20,13 @@ namespace CoffeeMachine.Services
             db.Orders.Add(order);
 
             db.SaveChanges();
+        }
+        
+        public async Task<List<Order>> GetOrdersAsync()
+        {
+            using var db = new AppDbContext();
+
+            return await db.Orders.ToListAsync();
         }
     }
 }
